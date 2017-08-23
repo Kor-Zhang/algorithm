@@ -8,8 +8,12 @@ public class Demo {
 		BinaryTreeI<String> tree = new BinaryTree<String>();
 		//建立树
 		tree.buildRootFirstTree(elems);
-		
+		//先序遍历
 		System.out.println(tree.rootFisrtVisit());
+		//中序遍历
+		System.out.println(tree.rootMiddleVisit());
+		//后序遍历
+		System.out.println(tree.rootLastVisit());
 	}
 
 }
