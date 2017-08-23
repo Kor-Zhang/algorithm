@@ -25,9 +25,9 @@ public class ShellSort<T> implements Sorter<T> {
 		while (true) {
 
 			// x代表分组进行直接插入排序,d代表组数
-			int groupFirst = 0;// 代表每组第一个
-			for (; groupFirst < d; groupFirst++) {
-				int unOrderSequenceFirst = groupFirst + d;//无序队列的第一个
+			int i = 0;// 代表每组第一个 
+			for (; i < d; i++) {
+				int unOrderSequenceFirst = i + d;//无序队列的第一个
 
 				// x组进行直接插入排序
 				for (; unOrderSequenceFirst < bucket.length; unOrderSequenceFirst = unOrderSequenceFirst + d) {
@@ -36,7 +36,7 @@ public class ShellSort<T> implements Sorter<T> {
 
 					int j = unOrderSequenceFirst - d;
 
-					for (; j >= groupFirst && bucket[j].compareTo(temp) == 1; j = j - d) {
+					for (; j >= i && bucket[j].compareTo(temp) == 1; j = j - d) {
 
 						bucket[j + d] = bucket[j];
 

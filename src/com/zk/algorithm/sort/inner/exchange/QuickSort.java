@@ -1,4 +1,4 @@
-package com.zk.algorithm.sort.inner.quick;
+package com.zk.algorithm.sort.inner.exchange;
 
 import com.zk.algorithm.sort.Sorter;
 

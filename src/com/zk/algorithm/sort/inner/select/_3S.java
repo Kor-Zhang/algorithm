@@ -15,18 +15,16 @@ public class _3S<T> implements Sorter<T> {
 	public void sort(Comparable<T>[] bucket) {
 		for (int i = 0; i < bucket.length - 1; i++) {// i代表当前最小元素存放位置,也代表趟数
 			int minPos = i;// 当前最小元素所在位置
-			T min = (T) bucket[minPos];// 当前最小元素
-			// 寻找i以后的最小的元素
 			int j = i + 1;
 			for (; j < bucket.length; j++) {
-				if (bucket[j].compareTo(min) == -1) {// 循环
-					min = (T) bucket[j];
+				if (bucket[j].compareTo((T) bucket[minPos]) == -1) {// 循环
 					minPos = j;
 				}
 			}
 			// 找到最小的元素的所在位置minPos
+			T temp = (T) bucket[minPos];
 			bucket[minPos] = bucket[i];
-			bucket[i] = (Comparable<T>) min;
+			bucket[i] = (Comparable<T>) temp;
 
 		}
 

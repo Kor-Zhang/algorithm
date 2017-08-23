@@ -4,7 +4,7 @@ package com.zk.algorithm.tree;
  * @author Kor_Zhang
  *
  */
-public class ParentChildTree<E> implements Tree<E>{
+public class ParentChildTree<E>{
 	
 	private TreeNode<E>[] treeNodes;//树的所有节点
 	private int root;//根节点位置
@@ -53,4 +53,5 @@ public class ParentChildTree<E> implements Tree<E>{
 		}
 		
 	}
+
 }
