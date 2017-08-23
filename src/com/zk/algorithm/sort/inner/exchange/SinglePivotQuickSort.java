@@ -3,12 +3,12 @@ package com.zk.algorithm.sort.inner.exchange;
 import com.zk.algorithm.sort.Sorter;
 
 /**
- * 快速排序
+ * 单轴快速排序
  * 
  * @author Kor_Zhang
  *
  */
-public class QuickSort<T> implements Sorter<T> {
+public class SinglePivotQuickSort<T> implements Sorter<T> {
 	@Override
 	public void sort(Comparable<T>[] bucket) {
 		recSort(bucket, 0, bucket.length - 1);
@@ -55,27 +55,27 @@ public class QuickSort<T> implements Sorter<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	private int round(Comparable<T>[] data, int low, int high) {
-		// low位被挖坑，等待填坑
-		Comparable<T> key = (Comparable<T>) data[low];
+		// 将轴保存,low位被挖坑，等待填坑
+		Comparable<T> pivot = (Comparable<T>) data[low];//
 
 		// 反复移动左右的数据
 		while (low < high) {
 			// 右部小数据移动到左边
-			while (low < high && (data[high].compareTo((T) key) == 1 || data[high].compareTo((T) key) == 0)) {
+			while (low < high && (data[high].compareTo((T) pivot) == 1 || data[high].compareTo((T) pivot) == 0)) {
 				--high;
 			}
 			// 填坑
 			data[low] = data[high];
 
 			// 左部小数据移动到右边
-			while (low < high && (data[low].compareTo((T) key) == -1 || data[low].compareTo((T) key) == 0)) {
+			while (low < high && (data[low].compareTo((T) pivot) == -1 || data[low].compareTo((T) pivot) == 0)) {
 				++low;
 			}
 			// 填坑
 			data[high] = data[low];
 		}
 		// 回填
-		data[low] = (Comparable<T>) key;
+		data[low] = (Comparable<T>) pivot;
 
 		return low;
 	}

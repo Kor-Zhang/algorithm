@@ -3,7 +3,7 @@ package com.zk.algorithm.sort;
 import java.util.Arrays;
 import java.util.Random;
 
-import com.zk.algorithm.sort.inner.exchange.QuickSort;
+import com.zk.algorithm.sort.inner.exchange.SinglePivotQuickSort;
 import com.zk.algorithm.sort.inner.insert.ShellSort;
 import com.zk.algorithm.sort.inner.insert.StraightInsert;
 import com.zk.algorithm.sort.inner.other.MaxHeapSort;
