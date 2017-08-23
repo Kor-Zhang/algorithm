@@ -12,6 +12,9 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	
 	@Override
 	public void buildRootFirstTree(E[] elems) {
+		if(elems.length <= 0){
+			return ;
+		}
 		this.root = new TreeNode(elems[0], null, null);//设置当前树的根节点值
 		
 		++elemIndex;
