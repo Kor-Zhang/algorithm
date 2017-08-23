@@ -7,7 +7,9 @@ package com.zk.algorithm.tree;
 public class ParentChildTree<E>{
 	
 	private TreeNode<E>[] treeNodes;//树的所有节点
+	
 	private int root;//根节点位置
+	
 	private int length;//树的节点数
 	
 	
