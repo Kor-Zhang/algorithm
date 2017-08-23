@@ -63,7 +63,7 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	/**
-	 * 根据根节点递归建立树 如:ABC##DE#G##F###
+	 * 递归建立树 如:ABC##DE#G##F###
 	 * 
 	 * @param parent
 	 *            父节点
