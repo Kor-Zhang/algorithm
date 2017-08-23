@@ -1,7 +1,7 @@
 package com.zk.algorithm.list;
 
 /**
- * 双向链表:DoubleLinkedListHeadNode
+ * 双向链表:DoubleLinkedList
  * @author Kor_Zhang
  *
  */
