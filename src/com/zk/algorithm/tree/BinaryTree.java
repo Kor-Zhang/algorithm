@@ -1,5 +1,8 @@
 package com.zk.algorithm.tree;
 
+import com.zk.algorithm.list.DoubleLinkedList;
+import com.zk.algorithm.list.List;
+
 /**
  * 二叉树
  * 
@@ -14,6 +17,8 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	private int currtElemIndex;// 当前节点值的索引
 
 	private E[] elems;// 节点数据
+
+	private List<E> visitRes = new DoubleLinkedList<E>();// 存储遍历结果
 
 	public BinaryTree() {
 		super();
@@ -85,9 +90,12 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	@Override
-	public String rootFisrtVisit() {
-
-		return recRootFisrtVisit(this.root);
+	public List<E> rootFisrtVisit() {
+		//清空结果集
+		this.visitRes.clear();
+		// 遍历后将结果放入集合visitRes
+		recRootFisrtVisit(this.root);
+		return visitRes;
 	}
 
 	/**
@@ -97,27 +105,29 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	 *            父节点
 	 * @return 返回当前结点及其子节点的值域信息
 	 */
-	private String recRootFisrtVisit(TreeNode parent) {
+	private void recRootFisrtVisit(TreeNode parent) {
 
 		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			return "#";
+			// 添加null表示无节点
+			visitRes.add(null);
+			return;
 		}
-		StringBuffer sb = new StringBuffer("");
 		// 获取根
-		sb.append(parent.getE());
-
+		visitRes.add(parent.getE());
 		// 递归左子树
-		sb.append(recRootFisrtVisit(parent.lChild));
+		recRootFisrtVisit(parent.lChild);
 		// 递归右子树
-		sb.append(recRootFisrtVisit(parent.rChild));
+		recRootFisrtVisit(parent.rChild);
 
-		return sb.toString();
 	}
 
 	@Override
-	public String rootMiddleVisit() {
-
-		return recRootMiddleVisit(this.root);
+	public List<E> rootMiddleVisit() {
+		//清空结果集
+		this.visitRes.clear();
+		// 遍历后将结果放入集合visitRes
+		recRootMiddleVisit(this.root);
+		return visitRes;
 	}
 
 	/**
@@ -125,50 +135,49 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	 * 
 	 * @param parent
 	 *            父节点
-	 * @return 返回当前结点及其子节点的值域信息
 	 */
-	private String recRootMiddleVisit(TreeNode parent) {
+	private void recRootMiddleVisit(TreeNode parent) {
 
 		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			return "#";
+			// 添加null表示无节点
+			visitRes.add(null);
+			return;
 		}
-		StringBuffer sb = new StringBuffer("");
 		// 递归左子树
-		sb.append(recRootMiddleVisit(parent.lChild));
-		// 获取节点信息
-		sb.append(parent.getE());
+		recRootMiddleVisit(parent.lChild);
+		// 获取根
+		visitRes.add(parent.getE());
 		// 递归右子树
-		sb.append(recRootMiddleVisit(parent.rChild));
-
-		return sb.toString();
+		recRootMiddleVisit(parent.rChild);
 	}
 
 	@Override
-	public String rootLastVisit() {
-
-		return recRootLastVisit(this.root);
+	public List<E> rootLastVisit() {
+		//清空结果集
+		this.visitRes.clear();
+		// 遍历后将结果放入集合visitRes
+		recRootLastVisit(this.root);
+		return visitRes;
 	}
 
 	/**
-	 * 递归中序遍历
+	 * 递归后序遍历
 	 * 
 	 * @param parent
-	 * @return
 	 */
-	private String recRootLastVisit(TreeNode parent) {
+	private void recRootLastVisit(TreeNode parent) {
 
 		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			return "#";
+			// 添加null表示无节点
+			visitRes.add(null);
+			return;
 		}
-		StringBuffer sb = new StringBuffer("");
 		// 递归左子树
-		sb.append(recRootLastVisit(parent.lChild));
+		recRootLastVisit(parent.lChild);
 		// 递归右子树
-		sb.append(recRootLastVisit(parent.rChild));
-		// 获取节点信息
-		sb.append(parent.getE());
-
-		return sb.toString();
+		recRootLastVisit(parent.rChild);
+		// 获取根
+		visitRes.add(parent.getE());
 	}
 
 	/**
