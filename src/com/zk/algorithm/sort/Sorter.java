@@ -7,7 +7,7 @@ package com.zk.algorithm.sort;
  */
 public interface Sorter<T>{
 	/**
-	 *  
+	 *  a
 	 * 
 	 */
 	/**
