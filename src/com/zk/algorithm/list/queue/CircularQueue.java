@@ -8,8 +8,8 @@ import java.lang.reflect.Array;
  * 
  * <pre>
  * 即	
- *	队满	(rear+1)%maxSize == front
- *	队空 rear == front
+ * 队满=>(rear+1)%maxSize == front
+ * 队空=>rear == front
  * </pre>
  * 
  * @author Kor_Zhang
@@ -32,10 +32,10 @@ public class CircularQueue<E> extends AbstractQueue<E> {
 		super();
 
 		this.maxSize = maxSize + 1;
-		
+
 		front = rear = 0;
 
-		//对分配一位用于分辨队空和对满
+		// 对分配一位用于分辨队空和对满
 		bucket = (E[]) Array.newInstance(Object.class, maxSize);
 	}
 
@@ -53,7 +53,7 @@ public class CircularQueue<E> extends AbstractQueue<E> {
 
 	@Override
 	public boolean add(E e) {
-		if(null == e){
+		if (null == e) {
 			return false;
 		}
 		if ((rear + 1) % maxSize == front) {
@@ -65,7 +65,7 @@ public class CircularQueue<E> extends AbstractQueue<E> {
 
 	@Override
 	public int size() {
-		return (rear - front + maxSize)%maxSize;
+		return (rear - front + maxSize) % maxSize;
 	}
 
 	@Override
@@ -77,5 +77,5 @@ public class CircularQueue<E> extends AbstractQueue<E> {
 	public int maxSize() {
 		return maxSize;
 	}
-	
+
 }
