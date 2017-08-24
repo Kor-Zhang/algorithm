@@ -1,4 +1,8 @@
 package com.zk.algorithm.tree;
+
+import com.zk.algorithm.list.DoubleLinkedList;
+import com.zk.algorithm.list.List;
+
 /**
  * 线索二叉树的接口定义
  * @author Kor_Zhang
@@ -10,6 +14,8 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 	private E[] elems;//树的元素
 	
 	private int currtElemIndex;//当前需要使用的元素的索引
+	
+	private List<E> visitRes = new DoubleLinkedList<E>();//保存遍历结果的集合
 	
 	/**
 	 * 根据参数elems和currtElemIndex创建一个树节点并且返回;<br/>
@@ -60,8 +66,33 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 		}
 	}
 	
-	public
-	
+	@Override
+	public Object[] rootFirstVisit() {
+		this.visitRes.clear();//清空集合
+
+		recRootFirstVisit(this.root);//从根开始递归遍历
+		
+		return visitRes.toArray();//返回储存遍历结果的visitRes集合1
+	}
+	/**
+	 * 递归先序遍历
+	 * @param parent	父节点
+	 */
+	private void recRootFirstVisit(TreeNode parent) {
+		
+		if(parent == null){//如果当前节点为空,表示其是一个空节点;
+			visitRes.add(null);
+			return;
+		}
+		
+		visitRes.add(parent.getE());//获取根
+		
+		recRootFirstVisit(parent.lchild);//递归左子树
+
+		recRootFirstVisit(parent.rchild);//递归右子树
+		
+	}
+
 	/**
 	 * 树的节点;
 	 * @author Kor_Zhang

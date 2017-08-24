@@ -58,10 +58,12 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
 	 */
 	Integer size();
 	/**
-	 * 将链表元素转化为数组;
+	 * 将链表元素转化为数组;<br/>
+	 * 为何不转化成E[]泛型?<br/>
+	 * 因为如果用户调用add(null),然后将Object[]转化为E[],这种行为将产生类型转换错误;
 	 * @return
 	 */
-	E[] toArray();
+	Object[] toArray();
 
 	/**
 	 * 追加一个新链表到现有链表

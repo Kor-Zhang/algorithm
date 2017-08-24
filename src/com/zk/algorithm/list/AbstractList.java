@@ -89,7 +89,7 @@ public class AbstractList<E> implements List<E> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public E[] toArray() {
+	public Object[] toArray() {
 		E[] arr = (E[]) Array.newInstance(Object.class, this.size());
 		for (int i = 0; i < this.size(); i++) {
 			arr[i] = this.get(i);
