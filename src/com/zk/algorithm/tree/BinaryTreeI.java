@@ -22,19 +22,19 @@ public interface BinaryTreeI<E> {
 	 * 
 	 * @return 储存遍历结果的集合
 	 */
-	List<E> rootFisrtVisit();
+	E[] rootFisrtVisit();
 
 	/**
 	 * 中序遍历访问树
 	 * 
 	 * @return 储存遍历结果的集合
 	 */
-	List<E> rootMiddleVisit();
+	E[] rootMiddleVisit();
 
 	/**
 	 * 后序遍历访问子树
 	 * 
 	 * @return 储存遍历结果的集合
 	 */
-	List<E> rootLastVisit();
+	E[] rootLastVisit();
 }

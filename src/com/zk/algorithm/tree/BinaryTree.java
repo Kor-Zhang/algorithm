@@ -90,12 +90,12 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	@Override
-	public List<E> rootFisrtVisit() {
+	public E[] rootFisrtVisit() {
 		//清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootFisrtVisit(this.root);
-		return visitRes;
+		return visitRes.toArray();
 	}
 
 	/**
@@ -122,12 +122,12 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	@Override
-	public List<E> rootMiddleVisit() {
+	public E[] rootMiddleVisit() {
 		//清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootMiddleVisit(this.root);
-		return visitRes;
+		return visitRes.toArray();
 	}
 
 	/**
@@ -152,12 +152,12 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	@Override
-	public List<E> rootLastVisit() {
+	public E[] rootLastVisit() {
 		//清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootLastVisit(this.root);
-		return visitRes;
+		return visitRes.toArray();
 	}
 
 	/**
