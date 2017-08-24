@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Demo {
 
 	public static void main(String[] args) {
-		//输入ABC##DE#G##F###
+		//输入例如ABC##DE#G##F###
 		String[] elems = new String[]{"A","B","C",null,null,"D","E",null,"G",null,null,"F",null,null,null};
 		BinaryTreeI<String> tree = new BinaryTree<String>();
 		//建立树
