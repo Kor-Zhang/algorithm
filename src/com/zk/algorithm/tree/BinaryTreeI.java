@@ -1,7 +1,5 @@
 package com.zk.algorithm.tree;
 
-import com.zk.algorithm.list.List;
-
 /**
  * 二叉树接口;
  * 
@@ -13,7 +11,7 @@ public interface BinaryTreeI<E> {
 	 * 按先序遍历建立树结构
 	 * 
 	 * @param elems
-	 *            树节点的值的数组,如果为null代表空节点
+	 *            elems提供的是一颗满二叉树的先序遍历的各个节点的值,null代表空节点;
 	 */
 	void buildRootFirstTree(E[] elems);
 

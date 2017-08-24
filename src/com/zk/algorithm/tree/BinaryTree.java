@@ -41,7 +41,8 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 	}
 
 	/**
-	 * 根据值建立树节点,节点建立后指向下一个值
+	 * 根据值建立树节点,节点建立后指向下一个值;<br/>
+	 * 错误的先序遍历数组将抛出{@link java.lang.ArrayIndexOutOfBoundsException}}异常;
 	 * 
 	 * @param e
 	 *            值域,如果值域为null,那么建立的节点=null
@@ -73,25 +74,21 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 			return;
 		}
 
-		if (currtElemIndex < elems.length) {// 如果还有待插入的数据
-			// 建立左孩子
-			parent.lChild = createATreeNode();
+		// 建立左孩子
+		parent.lChild = createATreeNode();
 
-			recBuildTree(parent.lChild);
+		recBuildTree(parent.lChild);
 
-		}
-		if (currtElemIndex < elems.length) {
-			// 建立左孩子
-			parent.rChild = createATreeNode();
-			// 建立右子树
-			recBuildTree(parent.rChild);
+		// 建立左孩子
+		parent.rChild = createATreeNode();
+		// 建立右子树
+		recBuildTree(parent.rChild);
 
-		}
 	}
 
 	@Override
 	public Object[] rootFisrtVisit() {
-		//清空结果集
+		// 清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootFisrtVisit(this.root);
@@ -123,7 +120,7 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 
 	@Override
 	public Object[] rootMiddleVisit() {
-		//清空结果集
+		// 清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootMiddleVisit(this.root);
@@ -153,7 +150,7 @@ public class BinaryTree<E> implements BinaryTreeI<E> {
 
 	@Override
 	public Object[] rootLastVisit() {
-		//清空结果集
+		// 清空结果集
 		this.visitRes.clear();
 		// 遍历后将结果放入集合visitRes
 		recRootLastVisit(this.root);

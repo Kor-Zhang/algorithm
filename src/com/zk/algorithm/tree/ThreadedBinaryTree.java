@@ -19,17 +19,23 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 	
 	/**
 	 * 根据参数elems和currtElemIndex创建一个树节点并且返回;<br/>
+	 * 错误的先序遍历数组将抛出{@link java.lang.ArrayIndexOutOfBoundsException}}异常;<br/>
 	 * 该节点的左右子树为空,左右线索标志为false;
 	 * @return	新建的树节点
 	 */
 	private TreeNode createATreeNode(){
+		//不是通过elems下标来判断的
+		try {
+			if (elems[currtElemIndex] != null) {
+				return new TreeNode(elems[currtElemIndex], null, null,false,false);
+			} else {
+				return null;
 
-		TreeNode node = null;
-		if(currtElemIndex < elems.length){
-			node = new TreeNode(elems[currtElemIndex++], null, null, false, false);
+			}
+
+		} finally {
+			++currtElemIndex;
 		}
-		
-		return node;
 	}
 	
 
@@ -52,18 +58,19 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 	 * @param parent	父节点
 	 */
 	private void recCreateTree(TreeNode parent){
-		
-		if(parent != null){
-			//递归左子树
-			parent.lchild = createATreeNode();
-			
-			recCreateTree(parent.lchild);
-			
-			//递归右子树
-			parent.rchild = createATreeNode();
-			
-			recCreateTree(parent.rchild);
+		if(parent ==null){//如果当前节点为空,那么不会继续往下创建树
+			return ;
 		}
+		//递归左子树
+		parent.lchild = createATreeNode();
+		
+		recCreateTree(parent.lchild);
+		
+		//递归右子树
+		parent.rchild = createATreeNode();
+		
+		recCreateTree(parent.rchild);
+		
 	}
 	
 	@Override
