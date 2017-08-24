@@ -21,4 +21,9 @@ public interface ThreadedBinaryTreeI<E> {
 	 * @return 储存先序遍历结果的的集合
 	 */
 	Object[] rootFirstVisit();
+	
+	/**
+	 * 将树线索化
+	 */
+	void threadTree();
 }

@@ -15,6 +15,8 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 	
 	private int currtElemIndex;//当前需要使用的元素的索引
 	
+	private TreeNode preNode;//刚才访问过的节点
+	
 	private List<E> visitRes = new DoubleLinkedList<E>();//保存遍历结果的集合
 	
 	/**
@@ -100,6 +102,38 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 		
 	}
 
+	@Override
+	public void threadTree() {
+		//通过中序遍历线索化树
+	}
+	/**
+	 * 递归线索化树
+	 * @param parent	父节点
+	 */
+	private void recThreadTree(TreeNode parent){
+		if(parent == null ){
+			return ;
+		}
+		//递归左子树
+		recCreateTree(parent.lchild);
+		
+		/******线索化当前节点 statrt******/
+		//前驱=>因为中序遍历中,左孩子先于根节点遍历,所以左孩子是前驱
+		if((parent.leftIsThread = parent.lchild == null) == true){
+			parent.lchild = preNode;
+		}
+		//后继=>因为无法确定当前节点的后继,所以我们选择确定上一个节点的后继
+		if((preNode.rightIsThread = preNode.rchild == null) == true){
+			preNode.rchild = parent;
+		}
+		//保存上一个节点
+		preNode = parent;
+		/******线索化当前节点 end******/
+		
+		//递归右子树
+		recCreateTree(parent.rchild);
+		
+	}
 	/**
 	 * 树的节点;
 	 * @author Kor_Zhang
@@ -164,6 +198,7 @@ public class ThreadedBinaryTree<E> implements ThreadedBinaryTreeI<E> {
 		
 		
 	}
+
 
 
 }
