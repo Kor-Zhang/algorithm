@@ -20,12 +20,6 @@ public class Demo {
 		System.out.println(Arrays.toString(tree.rootLastVisit()));
 		
 		
-		ThreadedBinaryTreeI<String> tree0 = new ThreadedBinaryTree<String>();
-		//建立树
-		tree0.createTree(elems);
-		System.out.println("visit threaeded binary tree");
-		//先序遍历
-		System.out.println(Arrays.toString(tree0.rootFirstVisit()));
 	}
 
 }
