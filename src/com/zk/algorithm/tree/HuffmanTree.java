@@ -12,7 +12,7 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 		
 		//统计字符数组中每个ascii码出现的次数
 		int[] asciiCount = countAscii(elems);
-		
+		//zk
 		
 		
 	}
