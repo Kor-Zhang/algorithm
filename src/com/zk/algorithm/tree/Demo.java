@@ -9,6 +9,7 @@ public class Demo {
 		//输入例如ABC##DE#G##F###
 		String[] elems = new String[]{"A","B","C",null,null,"D","E",null,"G",null,null,"F",null,null,null};
 		BinaryTreeI<String> tree = new BinaryTree<String>();
+		
 		//建立树
 		tree.buildRootFirstTree(elems);
 		
