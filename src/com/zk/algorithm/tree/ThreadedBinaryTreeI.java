@@ -4,6 +4,6 @@ package com.zk.algorithm.tree;
  * @author Kor_Zhang
  *
  */
-public interface ThreadedBinaryTreeI {
+public interface ThreadedBinaryTreeI<E> {
 	
 }
