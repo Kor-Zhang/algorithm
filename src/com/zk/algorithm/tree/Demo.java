@@ -1,5 +1,7 @@
 package com.zk.algorithm.tree;
 
+import java.util.Arrays;
+
 public class Demo {
 
 	public static void main(String[] args) {
@@ -9,11 +11,11 @@ public class Demo {
 		//建立树
 		tree.buildRootFirstTree(elems);
 		//先序遍历
-		System.out.println(tree.rootFisrtVisit());
+		System.out.println(Arrays.toString(tree.rootFisrtVisit()));
 		//中序遍历
-		System.out.println(tree.rootMiddleVisit());
+		System.out.println(Arrays.toString(tree.rootMiddleVisit()));
 		//后序遍历
-		System.out.println(tree.rootLastVisit());
+		System.out.println(Arrays.toString(tree.rootLastVisit()));
 	}
 
 }
