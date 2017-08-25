@@ -188,7 +188,7 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 		super.copy();
 		List<E> l = new DoubleLinkedList<E>();
 		E[] eArr = (E[]) this.toArray();
-		for (int i = 0; i < this.toArray().length; i++) {
+		for (int i = 0; i < eArr.length; i++) {
 			l.add(eArr[i]);
 		}
 		return l;

@@ -77,7 +77,7 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 	 */
 	private void setNodeHuffmanCode() {
 		// 递归树设置树节点的huffman编码
-		recSetHuffmanNodeCode(root, floorHuffmanCode);
+		recSetHuffmanNodeCode(root, floor, floorHuffmanCode);
 	}
 
 	/**
@@ -85,28 +85,33 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 	 * 
 	 * @param parent
 	 *            父节点
+	 * @param floor
+	 *            当前节点的层数
 	 * @param floorHuffmanCode
-	 *            当前节点的huffman编码
+	 *            当前楼层节点的huffman编码
 	 */
-	private void recSetHuffmanNodeCode(HTNode parent,
+	private void recSetHuffmanNodeCode(HTNode parent, Integer floor,
 			List<Character> floorHuffmanCode) {
 		if (parent.l == null && parent.r == null) {// 到达待编码的节点
 			// 设置其编码
-			parent.setHuffmanCode(floorHuffmanCode);
+			parent.huffmanCode = floorHuffmanCode;
+
 			System.out.println(parent);
 		}
 		// 遍历左子树,左走加0
 		if (parent.l != null) {
-			floorHuffmanCode.add('0');
-			//递归左子树
-			recSetHuffmanNodeCode(parent.l, floorHuffmanCode);
+			List<Character> l = floorHuffmanCode.copy();// 生成一个新的链表,避免子节点修改当前的huffman编码
+			l.add('0');
+			// 递归左子树
+			recSetHuffmanNodeCode(parent.l, floor + 1, l);
 		}
 		// 遍历右子树,右走加1
 		if (parent.r != null) {
 			// 设置当前层的编码到数组
-			floorHuffmanCode.add('1');
-			//递归右子树
-			recSetHuffmanNodeCode(parent.r, floorHuffmanCode);
+			List<Character> l = floorHuffmanCode.copy();// 生成一个新的链表,避免子节点修改当前的huffman编码
+			l.add('1');
+			// 递归右子树
+			recSetHuffmanNodeCode(parent.r, floor + 1, l);
 
 		}
 	}
@@ -276,15 +281,6 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 
 		private List<Character> huffmanCode;// 该节点的huffman编码
 
-		/**
-		 * 复制内容
-		 * 
-		 * @param huffmanCode
-		 */
-		public void setHuffmanCode(List<Character> huffmanCode) {
-			this.huffmanCode = huffmanCode.copy();
-		}
-
 		public HTNode(HTNode l, HTNode r, Integer ascii, Integer weight) {
 			super();
 			this.l = l;
@@ -302,12 +298,11 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 
 		@Override
 		public String toString() {
-			return "HTNode [l=" + l + ", r=" + r + ", ascii=" + ascii
+			return "HTNode [l=" + l + ", r=" + r + ", ascii=" + ((char)ascii.intValue())
 					+ ", weight=" + weight + ", huffmanCode=" + huffmanCode
 					+ "]";
 		}
 
-		
 	}
 
 	/**
