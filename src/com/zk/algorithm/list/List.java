@@ -65,6 +65,14 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
 	 * @return
 	 */
 	Object[] toArray();
+	
+	/**
+	 * 
+	 * 数组转化为链表
+	 * @param eArr	待转换的数组
+	 * @param append	是否添加
+	 */
+	void fromArray(E[] eArr,boolean append);
 
 	/**
 	 * 追加一个新链表到现有链表
@@ -90,5 +98,10 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
      * @param index插入的位置[0,n]
      */
     void insert(E e,Integer index);
+    /**
+     * 复制一份内容返回
+     * @return
+     */
+	List<E> copy();
 
 }

@@ -1,6 +1,10 @@
 package com.zk.algorithm.tree;
 
+import java.io.CharArrayReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.zk.algorithm.list.DoubleLinkedList;
 
 public class Demo {
 
@@ -20,6 +24,15 @@ public class Demo {
 		System.out.println(Arrays.toString(tree.rootMiddleVisit()));
 		//后序遍历
 		System.out.println(Arrays.toString(tree.rootLastVisit()));
+		
+		
+
+		System.out.println("------------Huffman tree----------");
+		HuffmanTree ht = new HuffmanTree();
+		
+		Character[] cs = new Character[]{'i','i','i','a','a','m',' ','z','k'};
+		ht.buildTree(cs);
+		
 		
 		
 	}

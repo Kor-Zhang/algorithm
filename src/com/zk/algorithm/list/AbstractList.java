@@ -130,5 +130,21 @@ public class AbstractList<E> implements List<E>{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public List<E> copy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void fromArray(E[] eArr, boolean append) {
+		if(!append){
+			this.clear();
+		}
+		for (int i = 0; i < eArr.length; i++) {
+			this.add(eArr[i]);
+		}
+		
+	}
 }
