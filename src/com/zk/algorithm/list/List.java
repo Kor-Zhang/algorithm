@@ -84,5 +84,11 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
 	 * @return	迭代器
 	 */
     Iterator<E> iterator();
+    /**
+     * 将元素插入到指定位置
+     * @param e	待插入元素	
+     * @param index插入的位置[0,n]
+     */
+    void insert(E e,Integer index);
 
 }

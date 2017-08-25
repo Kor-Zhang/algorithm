@@ -166,7 +166,23 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 		
 		this.tailNode = this.headNode;
 	}
-	
+	@Override
+	public void insert(E e, Integer index) {
+		super.insert(e, index);
+		Node<E> node  = this.headNode;
+		int i = -1;
+		//找到其父元素
+		while(node.next != null && i != index - 1){
+			node = node.next;
+			++i;
+		}
+		if(i == index - 1){//如果找到父节点
+			Node<E> newNode = new Node<E>(e, node.next, node);
+			node.next = newNode;
+			++size;
+		}
+		
+	}
 	
 	
 	/**
@@ -243,6 +259,8 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 			l.add(3);
 			l.add(4);
 			l.add(2);
+
+			l.insert(100, 1);
 			Iterator<Integer> it = l.iterator();
 			while (it.hasNext()) {
 				System.out.println(it.next());

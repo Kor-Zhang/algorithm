@@ -125,5 +125,10 @@ public class AbstractList<E> implements List<E>{
 		}
 		
 	}
+	@Override
+	public void insert(E e, Integer index) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
