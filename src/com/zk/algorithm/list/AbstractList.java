@@ -1,6 +1,7 @@
 package com.zk.algorithm.list;
 
 import java.lang.reflect.Array;
+import java.util.Iterator;
 
 /**
  * 预实现一些线性表功能
@@ -8,7 +9,7 @@ import java.lang.reflect.Array;
  *
  * @param <E>	线性表内部值类型;
  */
-public class AbstractList<E> implements List<E> {
+public class AbstractList<E> implements List<E>{
 
 	/**
 	 * 
@@ -96,4 +97,33 @@ public class AbstractList<E> implements List<E> {
 		}
 		return arr;
 	}
+
+	@Override
+	public Iterator<E> iterator() {
+		
+		return new It();
+	}
+	/**
+	 * 迭代器
+	 * @author Kor_Zhang
+	 *
+	 */
+	private class It implements Iterator<E>{
+		/**
+		 * 记录下迭代器的索引
+		 */
+		private Integer iteratorIndex = 0;
+		
+		@Override
+		public boolean hasNext() {
+			return iteratorIndex < AbstractList.this.size();
+		}
+
+		@Override
+		public E next() {
+			return AbstractList.this.get(iteratorIndex++);
+		}
+		
+	}
+	
 }

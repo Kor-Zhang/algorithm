@@ -1,5 +1,7 @@
 package com.zk.algorithm.list;
 
+import java.util.Iterator;
+
 /**
  * 双向链表:DoubleLinkedList
  * @author Kor_Zhang
@@ -164,6 +166,9 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 		
 		this.tailNode = this.headNode;
 	}
+	
+	
+	
 	/**
 	 * 双向链表节点
 	 * @author Kor_Zhang
@@ -232,7 +237,16 @@ public class DoubleLinkedList<E> extends AbstractList<E> {
 //			l.add(1211);
 //			l.removeElement(11);
 //			l.removeElement(3);
-			System.out.println(l.toString());
+			
+			
+			l.add(1);
+			l.add(3);
+			l.add(4);
+			l.add(2);
+			Iterator<Integer> it = l.iterator();
+			while (it.hasNext()) {
+				System.out.println(it.next());
+			}
 			
 //			l.print();
 			//System.out.println(l.indexOf(2));

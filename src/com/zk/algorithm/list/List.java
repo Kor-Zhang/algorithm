@@ -1,6 +1,7 @@
 package com.zk.algorithm.list;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 线性表
@@ -77,5 +78,11 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
 	 * 清空线性表
 	 */
 	void clear();
+	
+	/**
+	 * 返回一个迭代器
+	 * @return	迭代器
+	 */
+    Iterator<E> iterator();
 
 }
