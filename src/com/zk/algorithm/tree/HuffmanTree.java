@@ -1,9 +1,5 @@
 package com.zk.algorithm.tree;
 
-import java.util.Arrays;
-
-import com.zk.algorithm.list.DoubleLinkedList;
-import com.zk.algorithm.list.List;
 import com.zk.algorithm.list.queue.AbstractQueue;
 import com.zk.algorithm.list.queue.Queue;
 
@@ -23,17 +19,9 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 	// 临时缓存节点
 	private HTNode cacheHTNode;
 
-	// 用于存放根节点所在层 到 当层的huffman编码
-	private List<Character> floorHuffmanCode;
-	// 当前遍历的层数
-	private Integer floor;
-
 	@Override
 	public void buildTree(Character[] elems) {
 		super.buildTree(elems);
-		floorHuffmanCode = new DoubleLinkedList<Character>();
-
-		floor = 0;
 
 		root = null;
 
@@ -77,7 +65,7 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 	 */
 	private void setNodeHuffmanCode() {
 		// 递归树设置树节点的huffman编码
-		recSetHuffmanNodeCode(root, floor, floorHuffmanCode);
+		recSetHuffmanNodeCode(root, "");
 	}
 
 	/**
@@ -85,33 +73,26 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 	 * 
 	 * @param parent
 	 *            父节点
-	 * @param floor
-	 *            当前节点的层数
 	 * @param floorHuffmanCode
-	 *            当前楼层节点的huffman编码
+	 *            当前节点的huffman编码
 	 */
-	private void recSetHuffmanNodeCode(HTNode parent, Integer floor,
-			List<Character> floorHuffmanCode) {
+	private void recSetHuffmanNodeCode(HTNode parent, String floorHuffmanCode) {
 		if (parent.l == null && parent.r == null) {// 到达待编码的节点
 			// 设置其编码
 			parent.huffmanCode = floorHuffmanCode;
-
 			System.out.println(parent);
 		}
 		// 遍历左子树,左走加0
 		if (parent.l != null) {
-			List<Character> l = floorHuffmanCode.copy();// 生成一个新的链表,避免子节点修改当前的huffman编码
-			l.add('0');
+			// floorHuffmanCode = floorHuffmanCode + "0";错误的做法,将影响下面右子树的编码
 			// 递归左子树
-			recSetHuffmanNodeCode(parent.l, floor + 1, l);
+			recSetHuffmanNodeCode(parent.l, floorHuffmanCode + "0");
 		}
 		// 遍历右子树,右走加1
 		if (parent.r != null) {
-			// 设置当前层的编码到数组
-			List<Character> l = floorHuffmanCode.copy();// 生成一个新的链表,避免子节点修改当前的huffman编码
-			l.add('1');
+
 			// 递归右子树
-			recSetHuffmanNodeCode(parent.r, floor + 1, l);
+			recSetHuffmanNodeCode(parent.r, floorHuffmanCode + "1");
 
 		}
 	}
@@ -279,7 +260,7 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 
 		private Integer weight;// 该节点权重
 
-		private List<Character> huffmanCode;// 该节点的huffman编码
+		private String huffmanCode;// 该节点的huffman编码
 
 		public HTNode(HTNode l, HTNode r, Integer ascii, Integer weight) {
 			super();
@@ -298,9 +279,9 @@ public class HuffmanTree extends AbstractBinaryTree<Character> {
 
 		@Override
 		public String toString() {
-			return "HTNode [l=" + l + ", r=" + r + ", ascii=" + ((char)ascii.intValue())
-					+ ", weight=" + weight + ", huffmanCode=" + huffmanCode
-					+ "]";
+			return "HTNode [l=" + l + ", r=" + r + ", ascii="
+					+ ((char) ascii.intValue()) + ", weight=" + weight
+					+ ", huffmanCode=" + huffmanCode + "]";
 		}
 
 	}
