@@ -30,10 +30,16 @@ public class Demo {
 		System.out.println("------------Huffman tree----------");
 		AsciiHuffmanTree ht = new AsciiHuffmanTree();
 		
-		Character[] cs = new Character[]{'I',' ','l','o','v','e',' ','F','i','s','h','C','.','c','o','c'};
+		Character[] cs = new Character[]{'I',' ','l','o','v','e',' ','F','i','s','h','C','.','c','o','m'};
 		ht.buildTree(cs);
 		
-		
+		String huffmanCode = ht.encode(cs);
+		System.out.println(huffmanCode);
+		Character[] chs = ht.decode("100101000100110001111101010001101000011001011101011100110011");
+		for (int i = 0; i < chs.length; i++) {
+			System.out.print(chs[i]);
+			
+		}
 		
 	}
 

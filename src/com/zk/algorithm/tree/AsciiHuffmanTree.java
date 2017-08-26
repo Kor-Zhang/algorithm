@@ -1,5 +1,9 @@
 package com.zk.algorithm.tree;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import com.zk.algorithm.list.queue.AbstractQueue;
 import com.zk.algorithm.list.queue.Queue;
 
@@ -18,6 +22,10 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 	private HTNode root;
 	// 临时缓存节点
 	private HTNode cacheHTNode;
+	// 储存每个ascii的huffman编码
+	private Map<Integer, String> ascii2HuffmanCode = new HashMap<Integer, String>();
+	// 储存每个huffman编码的ascii
+	private Map<String, Integer> huffmanCode2Ascii = new HashMap<String, Integer>();
 
 	@Override
 	public void buildTree(Character[] elems) {
@@ -30,7 +38,7 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 		addToQueue(asciiWeight);
 		// 生成huffman树,获取huffman树的根节点
 		buildHuffmanTree();
-		// 设置每个值节点的huffman编码
+		// 设置每个值节点的huffman编码,并且将节点的值加入到asciiHuffmanCode
 		setNodeHuffmanCode();
 
 	}
@@ -79,7 +87,9 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 		if (parent.l == null && parent.r == null) {// 到达待编码的节点
 			// 设置其编码
 			parent.huffmanCode = floorHuffmanCode;
-			System.out.println(parent);
+
+			ascii2HuffmanCode.put(parent.ascii, floorHuffmanCode);
+			huffmanCode2Ascii.put(floorHuffmanCode, parent.ascii);
 		}
 		// 遍历左子树,左走加0
 		if (parent.l != null) {
@@ -206,17 +216,40 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 		}
 
 	}
+
 	@Override
 	public String encode(Character[] elems) {
-		// TODO Auto-generated method stub
-		return null;
+		String huffmanCode = "";
+		for (int i = 0; i < elems.length; i++) {
+			huffmanCode += ascii2HuffmanCode.get(((int) elems[i]));
+		}
+		return huffmanCode;
 	}
 
 	@Override
 	public Character[] decode(String huffmanCodes) {
-		// TODO Auto-generated method stub
-		return null;
+		String res = "";
+		String currt = "";
+		Set<String> keys = huffmanCode2Ascii.keySet();
+		for (int i = 0; i < huffmanCodes.length(); i++) {
+			currt += huffmanCodes.charAt(i);//记录当前编码
+			for (String k : keys) {
+				if(currt.equals(k)){
+					String v = String.valueOf(((char)huffmanCode2Ascii.get(k).intValue()));
+					res += v;
+					currt = "";
+				}
+				
+			}
+		}
+		
+		Character[] chs = new Character[res.length()];
+		for (int i = 0; i < chs.length; i++) {
+			chs[i] = res.charAt(i);
+		}
+		return chs;
 	}
+
 	/**
 	 * 权值小的节点在前的队列节点
 	 * 
@@ -332,7 +365,5 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 		}
 
 	}
-
-	
 
 }
