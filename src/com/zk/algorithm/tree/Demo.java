@@ -28,9 +28,9 @@ public class Demo {
 		
 
 		System.out.println("------------Huffman tree----------");
-		HuffmanTree ht = new HuffmanTree();
+		AsciiHuffmanTree ht = new AsciiHuffmanTree();
 		
-		Character[] cs = new Character[]{'i','i','i','a','a','m',' ','z','k'};
+		Character[] cs = new Character[]{'I',' ','l','o','v','e',' ','F','i','s','h','C','.','c','o','c'};
 		ht.buildTree(cs);
 		
 		
