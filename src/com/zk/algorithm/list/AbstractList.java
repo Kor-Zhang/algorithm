@@ -5,11 +5,13 @@ import java.util.Iterator;
 
 /**
  * 预实现一些线性表功能
+ * 
  * @author Kor_Zhang
  *
- * @param <E>	线性表内部值类型;
+ * @param <E>
+ *            线性表内部值类型;
  */
-public class AbstractList<E> implements List<E>{
+public class AbstractList<E> implements List<E> {
 
 	/**
 	 * 
@@ -19,19 +21,19 @@ public class AbstractList<E> implements List<E>{
 	@Override
 	public void remove(int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeElement(E e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void add(E e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -56,36 +58,36 @@ public class AbstractList<E> implements List<E>{
 	public String toString() {
 		StringBuffer sb = new StringBuffer("{\"content\":\"");
 		int index = 0;
-		while(index < this.size()){
-			if(index != this.size() -1){
-				sb.append(this.get(index)+",");
-				
-			}else{
+		while (index < this.size()) {
+			if (index != this.size() - 1) {
+				sb.append(this.get(index) + ",");
+
+			} else {
 				sb.append(this.get(index));
 			}
 			++index;
-			
+
 		}
-		sb.append("\",\"size\":\""+this.size()+"\"}");
+		sb.append("\",\"size\":\"" + this.size() + "\"}");
 		return sb.toString();
 	}
 
 	@Override
 	public void addAll(List<E> subList) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clear() {
-		
+
 	}
 
 	@Override
 	public int compareTo(List<E> o) {
 		int tSize = this.size();
 		int oSize = o.size();
-		return tSize>oSize?1:(tSize==oSize?0:-1);
+		return tSize > oSize ? 1 : (tSize == oSize ? 0 : -1);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -100,20 +102,22 @@ public class AbstractList<E> implements List<E>{
 
 	@Override
 	public Iterator<E> iterator() {
-		
+
 		return new It();
 	}
+
 	/**
 	 * 迭代器
+	 * 
 	 * @author Kor_Zhang
 	 *
 	 */
-	private class It implements Iterator<E>{
+	private class It implements Iterator<E> {
 		/**
 		 * 记录下迭代器的索引
 		 */
 		private Integer iteratorIndex = 0;
-		
+
 		@Override
 		public boolean hasNext() {
 			return iteratorIndex < AbstractList.this.size();
@@ -123,12 +127,13 @@ public class AbstractList<E> implements List<E>{
 		public E next() {
 			return AbstractList.this.get(iteratorIndex++);
 		}
-		
+
 	}
+
 	@Override
 	public void insert(E e, Integer index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -139,12 +144,17 @@ public class AbstractList<E> implements List<E>{
 
 	@Override
 	public void fromArray(E[] eArr, boolean append) {
-		if(!append){
+		if (!append) {
 			this.clear();
 		}
 		for (int i = 0; i < eArr.length; i++) {
 			this.add(eArr[i]);
 		}
-		
+
+	}
+
+	@Override
+	public boolean contain(E e) {
+		return this.indexOf(e) >= 0 ? true : false;
 	}
 }
