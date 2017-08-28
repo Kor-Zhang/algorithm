@@ -31,7 +31,7 @@ public interface Queue<E> {
 	boolean isEmpty();
 	/**
 	 * 队列的最大容量
-	 * @return
+	 * @return	-1表示无限
 	 */
 	int maxSize();
 }
