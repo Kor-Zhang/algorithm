@@ -7,14 +7,13 @@ package com.zk.algorithm.tree;
  *
  */
 public interface HuffmanTree<E> {
-	
 
 	/**
-	 * 对数据进行编码
+	 * 对ascii数据进行huffman编码
 	 * 
 	 * @param elems
-	 *            待编码的数据
-	 * @return 返回编码
+	 *            待编码的ascii数据
+	 * @return 返回huffman编码串
 	 */
 	String encode(E[] elems);
 

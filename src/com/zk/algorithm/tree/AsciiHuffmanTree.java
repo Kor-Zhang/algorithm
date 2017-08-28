@@ -29,6 +29,7 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 
 	/**
 	 * 根据元素建立huffman树
+	 * 
 	 * @param elems
 	 */
 	private void buildTree(Character[] elems) {
@@ -222,42 +223,47 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 
 	@Override
 	public String encode(Character[] elems) {
-		
-		//构建huffman树
+
+		// 构建huffman树
 		buildTree(elems);
-		
-		//根据huffman树获取编码
+
+		// 根据huffman树获取编码
 		return getHuffmanCode(elems);
 	}
+
 	/**
 	 * 通过ascii获取huffman编码
-	 * @param elems	ascii码
-	 * @return
+	 * 
+	 * @param elems
+	 *            ascii码
+	 * @return 返回ascii串的huffma编码
 	 */
-	private String getHuffmanCode(Character[] elems){
+	private String getHuffmanCode(Character[] elems) {
 		String huffmanCode = "";
 		for (int i = 0; i < elems.length; i++) {
 			huffmanCode += ascii2HuffmanCode.get(((int) elems[i]));
 		}
 		return huffmanCode;
 	}
+
 	@Override
 	public Character[] decode(String huffmanCodes) {
 		String res = "";
 		String currt = "";
 		Set<String> keys = huffmanCode2Ascii.keySet();
 		for (int i = 0; i < huffmanCodes.length(); i++) {
-			currt += huffmanCodes.charAt(i);//记录当前编码
+			currt += huffmanCodes.charAt(i);// 记录当前编码
 			for (String k : keys) {
-				if(currt.equals(k)){
-					String v = String.valueOf(((char)huffmanCode2Ascii.get(k).intValue()));
+				if (currt.equals(k)) {
+					String v = String.valueOf(((char) huffmanCode2Ascii.get(k)
+							.intValue()));
 					res += v;
 					currt = "";
 				}
-				
+
 			}
 		}
-		
+
 		Character[] chs = new Character[res.length()];
 		for (int i = 0; i < chs.length; i++) {
 			chs[i] = res.charAt(i);
