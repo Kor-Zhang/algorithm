@@ -7,14 +7,7 @@ package com.zk.algorithm.tree;
  *
  */
 public interface HuffmanTree<E> {
-	/**
-	 * 通过提供的样本数据建立树huffman树
-	 * 
-	 * @param elems
-	 *            建立树所需要的样本数据
-	 * 
-	 */
-	void buildTree(E[] elems);
+	
 
 	/**
 	 * 对数据进行编码

@@ -1,10 +1,6 @@
 package com.zk.algorithm.tree;
 
-import java.io.CharArrayReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.zk.algorithm.list.DoubleLinkedList;
 
 public class Demo {
 
@@ -31,7 +27,7 @@ public class Demo {
 		AsciiHuffmanTree ht = new AsciiHuffmanTree();
 		
 		Character[] cs = new Character[]{'I',' ','l','o','v','e',' ','F','i','s','h','C','.','c','o','m'};
-		ht.buildTree(cs);
+		ht.encode(cs);
 		
 		String huffmanCode = ht.encode(cs);
 		System.out.println(huffmanCode);

@@ -27,8 +27,11 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 	// 储存每个huffman编码的ascii
 	private Map<String, Integer> huffmanCode2Ascii = new HashMap<String, Integer>();
 
-	@Override
-	public void buildTree(Character[] elems) {
+	/**
+	 * 根据元素建立huffman树
+	 * @param elems
+	 */
+	private void buildTree(Character[] elems) {
 
 		root = null;
 
@@ -219,13 +222,25 @@ public class AsciiHuffmanTree implements HuffmanTree<Character> {
 
 	@Override
 	public String encode(Character[] elems) {
+		
+		//构建huffman树
+		buildTree(elems);
+		
+		//根据huffman树获取编码
+		return getHuffmanCode(elems);
+	}
+	/**
+	 * 通过ascii获取huffman编码
+	 * @param elems	ascii码
+	 * @return
+	 */
+	private String getHuffmanCode(Character[] elems){
 		String huffmanCode = "";
 		for (int i = 0; i < elems.length; i++) {
 			huffmanCode += ascii2HuffmanCode.get(((int) elems[i]));
 		}
 		return huffmanCode;
 	}
-
 	@Override
 	public Character[] decode(String huffmanCodes) {
 		String res = "";
