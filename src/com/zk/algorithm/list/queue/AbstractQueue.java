@@ -27,14 +27,13 @@ public class AbstractQueue<E> implements Queue<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.size() == 0?true:false;
 	}
 
 	@Override
 	public int maxSize() {
 		// TODO Auto-generated method stub
-		return 0;
+		return -1;
 	}
 
 }

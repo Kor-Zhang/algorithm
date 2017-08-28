@@ -68,10 +68,6 @@ public class CircularQueue<E> extends AbstractQueue<E> {
 		return (rear - front + maxSize) % maxSize;
 	}
 
-	@Override
-	public boolean isEmpty() {
-		return size() == 0;
-	}
 
 	@Override
 	public int maxSize() {
