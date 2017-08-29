@@ -30,10 +30,10 @@ public class LinkedQueue<E> extends AbstractQueue<E> {
 	@Override
 	public E delete() {
 
-		if(isEmpty()){
+		if (isEmpty()) {
 			return null;
 		}
-		
+
 		E t = headNode.next.e;
 
 		headNode.next = headNode.next.next;
@@ -49,11 +49,11 @@ public class LinkedQueue<E> extends AbstractQueue<E> {
 
 	@Override
 	public boolean add(E e) {
-		
-		if( null == e){
+
+		if (null == e) {
 			return false;
 		}
-		
+
 		cacheNode = new Node(e, tailNode, null);
 
 		tailNode.next = cacheNode;
