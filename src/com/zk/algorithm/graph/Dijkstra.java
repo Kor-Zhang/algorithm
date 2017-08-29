@@ -7,12 +7,21 @@ import com.zk.algorithm.list.List;
 /**
  * dijkstra算法实现单源最短路径;<br/>
  * 即求的一个顶点到其他顶点的最短路径分别是多少;<br/>
+ * <pre>
+ * 重点理解:
+ * 1.每个未访问顶点的权值是该顶点到起始顶点的总权值;
+ * 2.当每次访问一个新的节点成功后,需要对访问节点更新.
+ * 	具体的更新操作:
+ * 		1.添加已访问成功的顶点的度到未访问序列;
+ * 		2.为这些度+以访问顶点的权值;
+ * 		3.如果未访问序列已经含有该度的索引,那么说明有多条路径可以到达该顶点,需要判断更新该顶点的权值为这些路径中的最小权值;
+ * </pre>
  * @author Kor_Zhang
  * 
  */
 public class Dijkstra implements ShortestPath<DijkstraNode> {
 	
-	//unVisited是当前顶点的未被访问的度的信息
+	//unVisited是当前顶点的未被访问的顶点的信息
 	private List<DijkstraNode> unVisited = new DoubleLinkedList<DijkstraNode>();
 	//visited是当前已经被访问了的顶点信息
 	private List<DijkstraNode> visited = new DoubleLinkedList<DijkstraNode>();
@@ -55,7 +64,7 @@ public class Dijkstra implements ShortestPath<DijkstraNode> {
 							n1.weight = n0.weight;
 						}
 						
-					}else{
+					}else{//没有多条路径可到达该顶点,直接添加
 						unVisited.add(n0);
 					}
 				}
