@@ -78,7 +78,7 @@ public class Dijkstra implements ShortestPath<DijkstraNode> {
 	}
 
 	/**
-	 * 初始化以访问节点集合和为访问节点集合
+	 * 初始化已访问节点集合和为访问节点集合
 	 * 
 	 * @param adjacentMatrix
 	 *            邻接矩阵
