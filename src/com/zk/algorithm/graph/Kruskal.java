@@ -10,8 +10,8 @@ import com.zk.algorithm.list.queue.WeightQueue;
  * 注意:<br/>
  * 1.适用于无向网;<br/>
  * 2.kruskal算法核心是判断是否边的两顶点存在环,即需要理解方法{@link Kruskal#findRoot(Integer)};<br/>
- * 3.生成的边集只有原邻接矩阵的f(x)>-x部分,规律是startV>endV;
- * 
+ * 3.生成的边集只有原邻接矩阵的f(x)>-x部分,规律是startV>endV;<br/>
+ * 4.总的思想是:将边按升序排列(即边集),选取其中不会形成环的顶点加入最小生成树;
  * @author Kor_Zhang
  *
  */
