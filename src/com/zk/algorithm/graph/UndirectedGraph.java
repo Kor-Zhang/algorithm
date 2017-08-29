@@ -1,5 +1,7 @@
 package com.zk.algorithm.graph;
 
+import com.zk.algorithm.graph.Dijkstra.DijkstraNode;
+import com.zk.algorithm.graph.Kruskal.KruskalEdge;
 import com.zk.algorithm.list.DoubleLinkedList;
 import com.zk.algorithm.list.List;
 import com.zk.algorithm.list.queue.LinkedQueue;
@@ -12,13 +14,27 @@ import com.zk.algorithm.list.queue.Queue;
  *
  */
 public class UndirectedGraph implements Graph {
-
+	
 	// 邻接矩阵
 	private Integer[][] adjacentMatrix;
+	
+	//dijstra最短路劲算法中,S的作用是记录已求出最短路径的顶点
+	private List<Integer> S = new DoubleLinkedList<Integer>();
+	//dijstra最短路劲算法中,U则是记录还未求出最短路径的顶点(以及该顶点到起点s的距离)
+	private List<Integer> U = new DoubleLinkedList<Integer>();
+	
+	
 
 	@Override
-	public List<Integer> dijstra(Integer startV, Integer endV) {
-		return null;
+	public List<KruskalEdge> kruskal() {
+		return new Kruskal().produce(adjacentMatrix);
+	}
+	
+
+	@Override
+	public List<DijkstraNode> dijkstra(Integer startV) {
+		
+		return new Dijkstra().produce(adjacentMatrix, startV);
 	}
 
 	@Override
@@ -32,9 +48,9 @@ public class UndirectedGraph implements Graph {
 		 * ++++++++++++++++++++++++++++++++++
 		 * +   v0	+	0	+	2	+	4	+
 		 * ++++++++++++++++++++++++++++++++++
-		 * +   v1	+	2	+	0	+   0	+
+		 * +   v1	+	2	+	0	+NOPOWER+
 		 * ++++++++++++++++++++++++++++++++++
-		 * +   v2	+	4	+	0	+	0	+
+		 * +   v2	+	4	+NOPOWER+	0	+
 		 * ++++++++++++++++++++++++++++++++++
 		 */
 		
@@ -67,8 +83,8 @@ public class UndirectedGraph implements Graph {
 		searchRes.add(prevV);// 添加节点到返回集合
 		//遍历当前节点的度
 		for (int i = 0; i < adjacentMatrix[prevV].length; i++) {
-			Integer power = adjacentMatrix[prevV][i];// 当前节点的出度的权
-			if (power != 0 && !searchRes.contain(i)) {// 有出度且没有被遍历
+			Integer weight = adjacentMatrix[prevV][i];// 当前节点的出度的权
+			if (weight != 0 && weight != NOWEIGHT && !searchRes.contain(i)) {// 有出度且没有被遍历
 				// 递归下一个顶点,左手原则
 				recDFS(i, searchRes);
 			}
@@ -96,9 +112,9 @@ public class UndirectedGraph implements Graph {
 			// 访问其出度
 			for (int OD = 0; OD < adjacentMatrix[v].length; OD++) {
 
-				Integer power = adjacentMatrix[v][OD];// 本节点到出度的权重
+				Integer weight = adjacentMatrix[v][OD];// 本节点到出度的权重
 
-				if (power != 0 && !searchRes.contain(OD)) {// 如果该顶点未被访问过
+				if (weight != 0 && weight != NOWEIGHT && !searchRes.contain(OD)) {// 如果该顶点未被访问过
 
 					searchRes.add(OD);// 添加到已访问序列
 
@@ -107,9 +123,18 @@ public class UndirectedGraph implements Graph {
 
 			}
 		}
-		
-		
 
 		return searchRes;
+	}
+	
+	
+	/**
+	 * dijstra算法中的节点
+	 * @author Kor_Zhang
+	 *
+	 */
+	private class DijstraNode{
+		private Integer weightFromStartV;//当前节点到开始节点的权重
+		
 	}
 }
