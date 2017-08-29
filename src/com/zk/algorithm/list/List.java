@@ -129,5 +129,5 @@ public interface List<E> extends Serializable, Comparable<List<E>> {
 	 * @return true表示存在;
 	 */
 	boolean contain(E e);
-
+	
 }
