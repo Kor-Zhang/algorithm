@@ -62,13 +62,14 @@ public class Kruskal implements MinTree<KruskalEdge> {
 				continue;
 			}
 
-			// 判断是否形成环
+			// 判断是否形成环,注意:同一颗树上的所有节点根节点索引都相同
 			int sR = findRoot(edge.startV);// 找到开始节点的根顶点
 			int eR = findRoot(edge.endV);// 找到结束顶点的根顶点
+			
 			if (eR != sR) {// 存在权重 且 不存在环的可能性
 				// 加入节点到最小生成树
 				minTree.add(edge);
-				// 将开始节点的根设置为结束节点的根**重点理解
+				// 使同一颗树上的所有节点根节点索引都相同**重点理解
 				vRoot[eR] = sR;
 			}
 
@@ -99,17 +100,17 @@ public class Kruskal implements MinTree<KruskalEdge> {
 		 * ++++++++++++++++++++++++++++++++++
 		 * 注意:无向网只需要记录一条边(即记录矩阵右上角的数据)
 		 */
-		WeightQueue<KruskalEdge> kruskalVQ = new WeightQueue<Kruskal.KruskalEdge>(
+		WeightQueue<KruskalEdge> kruskalEdgeQueue = new WeightQueue<Kruskal.KruskalEdge>(
 				WeightQueue.ORDER_ASC);
-		// 遍历转化j>i的邻接矩阵顶点及其边到边集
+		// 遍历转化j>i的邻接矩阵
 		for (int i = 0; i < adjacentMatrix.length; i++) {
 			for (int j = 0; j < adjacentMatrix[i].length; j++) {
 				if (j > i) {
-					kruskalVQ.add(new KruskalEdge(i, j, adjacentMatrix[i][j]));
+					kruskalEdgeQueue.add(new KruskalEdge(i, j, adjacentMatrix[i][j]));
 				}
 			}
 		}
-		return kruskalVQ;
+		return kruskalEdgeQueue;
 	}
 
 	/**
