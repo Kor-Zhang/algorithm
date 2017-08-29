@@ -1,239 +1,39 @@
 package com.zk.algorithm.tree;
 
-import com.zk.algorithm.list.DoubleLinkedList;
-import com.zk.algorithm.list.List;
-
 /**
- * 二叉树
+ * 二叉树接口;
  * 
  * @author Kor_Zhang
  *
- * @param <E>
- *            树储存的数据类型
  */
-public class BinaryTree<E> implements BinaryTreeI<E> {
-	private TreeNode root;// 保存树的根节点
-
-	private int currtElemIndex;// 当前节点值的索引
-
-	private E[] elems;// 节点数据
-
-	private List<E> visitRes = new DoubleLinkedList<E>();// 存储遍历结果
-
-	public BinaryTree() {
-		super();
-	}
-
-	@Override
-	public void buildRootFirstTree(E[] elems) {
-		if (elems.length <= 0) {
-			return;
-		}
-
-		this.elems = elems;
-
-		this.currtElemIndex = 0;
-
-		this.root = createATreeNode();// 设置当前树的根节点值
-
-		recBuildTree(this.root);// 递归建立根以下的树
-
-	}
+public interface BinaryTree<E> {
+	/**
+	 * 建立树结构
+	 * 
+	 * @param elems
+	 *            建立树所需要的数据
+	 * 
+	 */
+	void buildTree(E[] elems);
 
 	/**
-	 * 根据值建立树节点,节点建立后指向下一个值
+	 * 先序遍历访问树
 	 * 
-	 * @param e
-	 *            值域,如果值域为null,那么建立的节点=null
-	 * @return 返回创建的节点
+	 * @return 储存遍历结果的集合
 	 */
-	private TreeNode createATreeNode() {
-		try {
-			if (elems[currtElemIndex] != null) {
-				return new TreeNode(elems[currtElemIndex], null, null);
-			} else {
-				return null;
-
-			}
-
-		} finally {
-			++currtElemIndex;
-		}
-
-	}
+	Object[] rootFisrtVisit();
 
 	/**
-	 * 递归建立树 如:ABC##DE#G##F###
+	 * 中序遍历访问树
 	 * 
-	 * @param parent
-	 *            父节点
+	 * @return 储存遍历结果的集合
 	 */
-	private void recBuildTree(TreeNode parent) {
-		if (parent == null) {
-			return;
-		}
-
-		if (currtElemIndex < elems.length) {// 如果还有待插入的数据
-			// 建立左孩子
-			parent.lChild = createATreeNode();
-
-			recBuildTree(parent.lChild);
-
-		}
-		if (currtElemIndex < elems.length) {
-			// 建立左孩子
-			parent.rChild = createATreeNode();
-			// 建立右子树
-			recBuildTree(parent.rChild);
-
-		}
-	}
-
-	@Override
-	public List<E> rootFisrtVisit() {
-		//清空结果集
-		this.visitRes.clear();
-		// 遍历后将结果放入集合visitRes
-		recRootFisrtVisit(this.root);
-		return visitRes;
-	}
+	Object[] rootMiddleVisit();
 
 	/**
-	 * 递归先序遍历
+	 * 后序遍历访问子树
 	 * 
-	 * @param parent
-	 *            父节点
-	 * @return 返回当前结点及其子节点的值域信息
+	 * @return 储存遍历结果的集合
 	 */
-	private void recRootFisrtVisit(TreeNode parent) {
-
-		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			// 添加null表示无节点
-			visitRes.add(null);
-			return;
-		}
-		// 获取根
-		visitRes.add(parent.getE());
-		// 递归左子树
-		recRootFisrtVisit(parent.lChild);
-		// 递归右子树
-		recRootFisrtVisit(parent.rChild);
-
-	}
-
-	@Override
-	public List<E> rootMiddleVisit() {
-		//清空结果集
-		this.visitRes.clear();
-		// 遍历后将结果放入集合visitRes
-		recRootMiddleVisit(this.root);
-		return visitRes;
-	}
-
-	/**
-	 * 递归中序遍历
-	 * 
-	 * @param parent
-	 *            父节点
-	 */
-	private void recRootMiddleVisit(TreeNode parent) {
-
-		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			// 添加null表示无节点
-			visitRes.add(null);
-			return;
-		}
-		// 递归左子树
-		recRootMiddleVisit(parent.lChild);
-		// 获取根
-		visitRes.add(parent.getE());
-		// 递归右子树
-		recRootMiddleVisit(parent.rChild);
-	}
-
-	@Override
-	public List<E> rootLastVisit() {
-		//清空结果集
-		this.visitRes.clear();
-		// 遍历后将结果放入集合visitRes
-		recRootLastVisit(this.root);
-		return visitRes;
-	}
-
-	/**
-	 * 递归后序遍历
-	 * 
-	 * @param parent
-	 */
-	private void recRootLastVisit(TreeNode parent) {
-
-		if (parent == null) {// 如果为空,表示没有节点,结束递归
-			// 添加null表示无节点
-			visitRes.add(null);
-			return;
-		}
-		// 递归左子树
-		recRootLastVisit(parent.lChild);
-		// 递归右子树
-		recRootLastVisit(parent.rChild);
-		// 获取根
-		visitRes.add(parent.getE());
-	}
-
-	/**
-	 * 树的节点
-	 * 
-	 * @author Kor_Zhang
-	 *
-	 */
-	private class TreeNode {
-
-		private E e;// 数据域
-
-		private BinaryTree<E>.TreeNode lChild;// 指向左孩子
-
-		private BinaryTree<E>.TreeNode rChild;// 指向右孩子
-
-		public E getE() {
-			return e;
-		}
-
-		public void setE(E e) {
-			this.e = e;
-		}
-
-		public BinaryTree<E>.TreeNode getlChild() {
-			return lChild;
-		}
-
-		public void setlChild(BinaryTree<E>.TreeNode lChild) {
-			this.lChild = lChild;
-		}
-
-		public BinaryTree<E>.TreeNode getrChild() {
-			return rChild;
-		}
-
-		public void setrChild(BinaryTree<E>.TreeNode rChild) {
-			this.rChild = rChild;
-		}
-
-		public TreeNode(E e, BinaryTree<E>.TreeNode lChild, BinaryTree<E>.TreeNode rChild) {
-			super();
-			this.e = e;
-			this.lChild = lChild;
-			this.rChild = rChild;
-		}
-
-		public TreeNode() {
-			super();
-		}
-
-		@Override
-		public String toString() {
-			return "TreeNode [e=" + e + ", lChild=" + lChild + ", rChild=" + rChild + "]";
-		}
-
-	}
-
+	Object[] rootLastVisit();
 }
