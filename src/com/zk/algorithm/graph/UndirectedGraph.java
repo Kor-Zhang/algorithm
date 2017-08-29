@@ -17,13 +17,6 @@ public class UndirectedGraph implements Graph {
 	
 	// 邻接矩阵
 	private Integer[][] adjacentMatrix;
-	
-	//dijstra最短路劲算法中,S的作用是记录已求出最短路径的顶点
-	private List<Integer> S = new DoubleLinkedList<Integer>();
-	//dijstra最短路劲算法中,U则是记录还未求出最短路径的顶点(以及该顶点到起点s的距离)
-	private List<Integer> U = new DoubleLinkedList<Integer>();
-	
-	
 
 	@Override
 	public List<KruskalEdge> kruskal() {
@@ -83,7 +76,7 @@ public class UndirectedGraph implements Graph {
 		searchRes.add(prevV);// 添加节点到返回集合
 		//遍历当前节点的度
 		for (int i = 0; i < adjacentMatrix[prevV].length; i++) {
-			Integer weight = adjacentMatrix[prevV][i];// 当前节点的出度的权
+			Integer weight = adjacentMatrix[prevV][i];// 当前节点出度的权
 			if (weight != 0 && weight != NOWEIGHT && !searchRes.contain(i)) {// 有出度且没有被遍历
 				// 递归下一个顶点,左手原则
 				recDFS(i, searchRes);
@@ -109,7 +102,7 @@ public class UndirectedGraph implements Graph {
 		// 遍历队列中未被访问其度的节点
 		while (!unVisitODNode.isEmpty()) {
 			Integer v = unVisitODNode.delete();
-			// 访问其出度
+			// 访问其度
 			for (int OD = 0; OD < adjacentMatrix[v].length; OD++) {
 
 				Integer weight = adjacentMatrix[v][OD];// 本节点到出度的权重

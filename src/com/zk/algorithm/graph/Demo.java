@@ -1,8 +1,8 @@
 package com.zk.algorithm.graph;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
+import com.zk.algorithm.graph.Dijkstra.DijkstraNode;
 import com.zk.algorithm.graph.Kruskal.KruskalEdge;
 import com.zk.algorithm.list.List;
 
@@ -76,7 +76,12 @@ public class Demo {
 		}
 		//dijkstra算法寻找单源最短路径
 		System.out.println("迪杰斯科特实现单源最短路径:");
-		g.dijkstra(0);
+		List<DijkstraNode> r0 = g.dijkstra(0);
+		//输出dijkstra算法结果
+		Iterator<DijkstraNode> it0 = r0.iterator();
+		while(it0.hasNext()){
+			System.out.println(it0.next());
+		}
 	}
 
 }
