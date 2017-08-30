@@ -7,7 +7,7 @@ import com.zk.algorithm.list.List;
 public class Demo {
 
 	public static void main(String[] args) {
-//		List<String> lList = new SingleLinkedList<String>();
+		List<String> lList = new SingleLinkedList<String>();
 	}
 
 }
